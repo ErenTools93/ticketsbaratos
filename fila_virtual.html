@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila Virtual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fila Virtual</h1>
+        <p>En estos momentos tenemos mucho flujo de compra. Espere en la fila virtual.</p>
+        <h2 id="posicion">Su número en la fila es: 101</h2>
+    </div>
+    <script>
+        let posicion = 101;
+        const display = document.getElementById('posicion');
+
+        const intervalo = setInterval(() => {
+            if (posicion > 1) {
+                posicion--;
+                display.innerText = `Su número en la fila es: ${posicion}`;
+            } else {
+                clearInterval(intervalo);
+                alert('Ya puede continuar con su compra.');
+            }
+        }, 180000);
+    </script>
+</body>
+</html>

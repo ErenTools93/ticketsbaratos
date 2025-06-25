@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del Pasajero</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="formContainer"></div>
+    <button onclick="continuar()">Continuar con el Pago</button>
+
+    <script>
+        const pasajeros = localStorage.getItem('pasajeros');
+        const container = document.getElementById('formContainer');
+
+        for (let i = 1; i <= pasajeros; i++) {
+            container.innerHTML += `
+                <h2>Pasajero ${i}</h2>
+                <input type="text" placeholder="Nombre Completo">
+                <input type="text" placeholder="Cédula">
+                <input type="text" placeholder="Número de Celular">
+                <input type="text" placeholder="Contacto de Emergencia">
+                <input type="text" placeholder="Número de Contacto de Emergencia">
+            `;
+        }
+
+        function continuar() {
+            window.location.href = 'pago.html';
+        }
+    </script>
+</body>
+</html>

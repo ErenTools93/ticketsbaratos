@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicketsBaratos - Iniciar Sesión</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Iniciar Sesión</h1>
+        <input type="email" id="email" placeholder="Correo Electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+        <button onclick="window.location.href='register.html'">Regístrate</button>
+    </div>
+    <script>
+        function login() {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            if (email && password) {
+                localStorage.setItem('usuario', email);
+                window.location.href = 'home.html';
+            } else {
+                alert('Por favor complete todos los campos');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="saludo"></h1>
+        <h2>¿A dónde vas a viajar?</h2>
+        <label>Ciudad de Origen</label>
+        <select id="origen"></select>
+        <label>Ciudad de Destino</label>
+        <select id="destino"></select>
+        <label>Tipo de Viaje</label>
+        <select id="tipoViaje" onchange="toggleFecha()">
+            <option value="ida">Ida</option>
+            <option value="idaVuelta">Ida y Vuelta</option>
+        </select>
+        <label>Fecha de Ida</label>
+        <input type="date" id="fechaIda">
+        <div id="fechaRegresoContainer" style="display:none;">
+            <label>Fecha de Regreso</label>
+            <input type="date" id="fechaRegreso">
+        </div>
+        <label>Número de Pasajeros</label>
+        <input type="number" id="pasajeros" min="1" value="1">
+        <button onclick="buscar()">Buscar Ofertas</button>
+    </div>
+    <script>
+        const saludo = document.getElementById('saludo');
+        const usuario = localStorage.getItem('usuario');
+        saludo.innerText = `Hola, ${usuario}`;
+
+        const ciudades = [
+            'Bogotá - El Dorado', 'Medellín - José María Córdova', 'Cali - Alfonso Bonilla Aragón', 
+            'Cartagena - Rafael Núñez', 'Barranquilla - Ernesto Cortissoz', 'Santa Marta - Simón Bolívar',
+            'Bucaramanga - Palonegro', 'Pereira - Matecaña', 'Cúcuta - Camilo Daza', 'San Andrés - Gustavo Rojas Pinilla'
+        ];
+
+        const origen = document.getElementById('origen');
+        const destino = document.getElementById('destino');
+
+        ciudades.forEach(c => {
+            let option1 = document.createElement('option');
+            option1.textContent = c;
+            origen.appendChild(option1);
+
+            let option2 = document.createElement('option');
+            option2.textContent = c;
+            destino.appendChild(option2);
+        });
+
+        function toggleFecha() {
+            const tipoViaje = document.getElementById('tipoViaje').value;
+            document.getElementById('fechaRegresoContainer').style.display = tipoViaje === 'idaVuelta' ? 'block' : 'none';
+        }
+
+        function buscar() {
+            localStorage.setItem('tipoViaje', document.getElementById('tipoViaje').value);
+            localStorage.setItem('pasajeros', document.getElementById('pasajeros').value);
+            window.location.href = 'vuelos.html';
+        }
+    </script>
+</body>
+</html>
